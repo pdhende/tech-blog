@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Node JS",
+    "description": "Node JS is a server side scripting technology."
+  },
+  {
+    "title": "Create UI",
+    "description": "To provide great user experience it is important to create clean and beuatiful UI"
+  },
+  {
+    "title": "MVC",
+    "description": "MVC is useful in maintaining code."
+  }
+]
