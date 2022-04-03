@@ -2,6 +2,13 @@ header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
 }
 
+
+h4 {
+  color: brown;
+  font-family: cursive;
+  padding-bottom: 1.5rem;
+}
+
 .no-button {
   background: none;
   border: none;
@@ -22,3 +29,4 @@ header, .project:not(:last-child) {
   font-weight: bold;
   margin-left: -5px;
 }
+

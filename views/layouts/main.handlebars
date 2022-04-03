@@ -20,23 +20,23 @@
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
         <!-- <a href="/profile">profile</a> -->
-        <a href="/homepage">Home</a> | <a href="/dashboard">Dashboard</a>
+        <a href="/homepage">Home</a> | <a href="/dashboard">Dashboard</a> | 
         <button class="no-button" id="logout">logout</button>
         {{else}}
-        <a href="" class="links">Home</a> | <a href="" class="links">Dashboard</a> | <a href="/login">login</a>
+        <a href="#" class="links">Home</a> | <a href="#" class="links">Dashboard</a> | <a href="/login">login</a>
         {{/if}}
       </nav>
     </header>
     <main class="container container-fluid mt-5 custom-main">
-      <!-- Render the sub layout -->
-      {{{ body }}}
+      {{!-- Display message to prompt user to login --}}
 
       <script type="text/x-handlebars-template" id="msg">
-        <h3>{{message}}</h3>
+        <h4>Please sign up or sign in to access all the content on Tech Blog!</h4>
       </script>
       <div id="dispMsg">
-
       </div>
+      <!-- Render the sub layout -->
+      {{{ body }}}
 
     </main>
     <footer>
