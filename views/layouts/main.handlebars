@@ -19,8 +19,7 @@
       <nav>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <!-- <a href="/profile">profile</a> -->
-        <a href="/homepage">Home</a> | <a href="/dashboard">Dashboard</a> | 
+        <a href="/homepage">Home</a> | <a href="/dashboard">Dashboard</a> |
         <button class="no-button" id="logout">Logout</button>
         {{else}}
         <a href="#" class="links">Home</a> | <a href="#" class="links">Dashboard</a> | <a href="/login">Login</a>
@@ -36,6 +35,13 @@
       <div id="dispMsg">
       </div>
 
+      {{!-- {{#if logged_in}}
+      <div class="row">
+        <div class="col-auto">
+          <h3>Welcome, {{name}}!</h3>
+        </div>
+      </div>
+      {{/if}} --}}
       <!-- Render the sub layout -->
       {{{ body }}}
 
@@ -50,7 +56,7 @@
   {{else}}
   <script src="/js/links.js"></script>
   {{/if}}
-  
+
 </body>
-  
+
 </html>

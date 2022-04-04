@@ -30,7 +30,25 @@ router.get('/', async (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
-router.get('/profile', withAuth, async (req, res) => {
+// router.get('/profile', withAuth, async (req, res) => {
+//   try {
+//     // Find the logged in user based on the session ID
+//     const userData = await User.findByPk(req.session.user_id, {
+//       attributes: { exclude: ['password'] },
+//     });
+
+//     const user = userData.get({ plain: true });
+
+//     res.render('profile', {
+//       ...user,
+//       logged_in: true
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+router.get('/homepage', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
@@ -39,14 +57,68 @@ router.get('/profile', withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
 
-    res.render('profile', {
+    const allPosts = await Post.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+    
+  //  const posts =  res.json(allPosts);
+  //  console.log(posts);
+    // Serialize data so the template can read it
+    const posts = allPosts.map((post) => post.get({ plain: true }));
+    // console.log(posts);
+
+    res.render('homepage', {
       ...user,
+      posts,
+      // route: 'homepage',
       logged_in: true
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+// router.get('/dashboard', withAuth, async (req, res) => {
+//   try {
+    
+//     const userData = await User.findByPk(req.session.user_id, {
+//       attributes: { exclude: ['password'] },
+//     });
+
+//     const user = userData.get({ plain: true });
+
+//     const allPosts = await Post.findAll({
+//       where: {
+//         user_id: user.id,
+//       },
+//       include: [
+//         {
+//           model: User,
+//           attributes: ['name'],
+//         },
+//       ],
+//     });
+    
+//   //  const posts =  res.json(allPosts);
+//   //  console.log(posts);
+//     // Serialize data so the template can read it
+
+//     const posts = allPosts.map((post) => post.get({ plain: true }));
+
+//     res.render('homepage', {
+//       posts,
+//       logged_in: true
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
