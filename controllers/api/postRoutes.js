@@ -6,7 +6,7 @@ router.get('/newpost', withAuth, (req, res) => {
     try {
         console.log(req.session.user_id);
         res.render('newpost', {
-            logged_in: true
+            logged_in: req.session.logged_in
         });
     }catch(err) {
         res.status(400).json(err);
