@@ -14,11 +14,9 @@ router.get('/', async (req, res) => {
       ],
     });
     
-  //  const posts =  res.json(allPosts);
-  //  console.log(posts);
     // Serialize data so the template can read it
     const posts = allPosts.map((post) => post.get({ plain: true }));
-    // console.log(posts);
+
     // Pass serialized data and session flag into template
     res.render('homepage', { 
       posts,
@@ -29,25 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Use withAuth middleware to prevent access to route
-// router.get('/profile', withAuth, async (req, res) => {
-//   try {
-//     // Find the logged in user based on the session ID
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ['password'] },
-//     });
-
-//     const user = userData.get({ plain: true });
-
-//     res.render('profile', {
-//       ...user,
-//       logged_in: true
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
+// Route for the home page
 router.get('/homepage', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
@@ -66,16 +46,12 @@ router.get('/homepage', withAuth, async (req, res) => {
       ],
     });
     
-  //  const posts =  res.json(allPosts);
-  //  console.log(posts);
     // Serialize data so the template can read it
     const posts = allPosts.map((post) => post.get({ plain: true }));
-    // console.log(posts);
-
+  
     res.render('homepage', {
       ...user,
       posts,
-      // route: 'homepage',
       logged_in: true
     });
   } catch (err) {
@@ -83,6 +59,7 @@ router.get('/homepage', withAuth, async (req, res) => {
   }
 });
 
+// Route for the dashboard
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     
@@ -104,14 +81,13 @@ router.get('/dashboard', withAuth, async (req, res) => {
       ],
     });
     
-  //  const posts =  res.json(allPosts);
-  //  console.log(posts);
     // Serialize data so the template can read it
 
     const posts = allPosts.map((post) => post.get({ plain: true }));
 
     res.render('homepage', {
       posts,
+      dashboard: true,
       logged_in: true
     });
   } catch (err) {
