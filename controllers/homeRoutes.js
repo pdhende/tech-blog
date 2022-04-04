@@ -83,41 +83,41 @@ router.get('/homepage', withAuth, async (req, res) => {
   }
 });
 
-// router.get('/dashboard', withAuth, async (req, res) => {
-//   try {
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
     
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ['password'] },
-//     });
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+    });
 
-//     const user = userData.get({ plain: true });
+    const user = userData.get({ plain: true });
 
-//     const allPosts = await Post.findAll({
-//       where: {
-//         user_id: user.id,
-//       },
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//       ],
-//     });
+    const allPosts = await Post.findAll({
+      where: {
+        user_id: user.id,
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
     
-//   //  const posts =  res.json(allPosts);
-//   //  console.log(posts);
-//     // Serialize data so the template can read it
+  //  const posts =  res.json(allPosts);
+  //  console.log(posts);
+    // Serialize data so the template can read it
 
-//     const posts = allPosts.map((post) => post.get({ plain: true }));
+    const posts = allPosts.map((post) => post.get({ plain: true }));
 
-//     res.render('homepage', {
-//       posts,
-//       logged_in: true
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.render('homepage', {
+      posts,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 router.get('/login', (req, res) => {
