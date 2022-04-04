@@ -4,8 +4,12 @@ header, .project:not(:last-child) {
 
 
 h4 {
-  color: brown;
-  font-family: cursive;
+  color: darkblue;
+  /* font-family: cursive; */
+  padding-bottom: 1.5rem;
+}
+
+form {
   padding-bottom: 1.5rem;
 }
 
