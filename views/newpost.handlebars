@@ -2,21 +2,51 @@
     <h4>Create New Post</h4>
 </div>
 
+{{!-- <form class="needs-validation" novalidate> --}}
 <form>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Title</label>
+        {{!-- <input type="title" class="form-control" id="title"> --}}
+        <input type="title" class="form-control" id="title" placeholder="Title" required>
+        {{!-- <div class="invalid-feedback">
+            Please provide a title.
+        </div> --}}
+    </div>
 
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Title</label>
-    <input type="title" class="form-control" id="title">
-  </div>
-  
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Content</label>
-    <textarea class="form-control" id="content" rows="3"></textarea>
-  </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Content</label>
+        <textarea class="form-control" id="content" rows="3" placeholder="Content" required></textarea>
+        {{!-- <div class="invalid-feedback">
+            Please provide some content.
+        </div> --}}
+    </div>
 
-  <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary" id="postSubmit">Create</button>
 </form>
 
-<div>
+{{!-- <div>
     <a class="btn btn-primary" href="/api/post/newpost" role="button">Create New Post</a>
-</div>
+</div> --}}
+
+{{!-- <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script> --}}
+
+<script src="/js/posts.js"></script>
