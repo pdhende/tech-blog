@@ -5,16 +5,24 @@ const newPost = async (event) => {
     event.preventDefault();
 
     const title = document.querySelector('#title').value.trim();
-    const content = document.querySelector('#content').value.trim();
+    const description = document.querySelector('#content').value.trim();
     console.log(title);
     console.log(content);
-    // const res = await fetch('api/posts', {
-    //     method: 'POST',
-    //     body: JSON.stringify({ title, content }),
-    // });
-    // alert('hi');
+    const res = await fetch('/api/posts', {
+        method: 'POST',
+        body: JSON.stringify({ title, description }),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    if (res.ok) {
+        // If successful, redirect the browser to the dashboard page
+        // console.log(response);
+        document.location.replace('/dashboard');
+    } else {
+        console.log(response.statusText);
+        alert(res.statusText);
+
+    }
+
 };
 
 createBttn.addEventListener('click', newPost);
-
-// alert('hi');
