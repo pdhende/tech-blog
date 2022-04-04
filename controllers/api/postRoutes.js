@@ -28,9 +28,13 @@ router.get('/:id', withAuth, async (req, res) => {
                 // raw: true,
           });
         // console.log(postById);
-        const postID = postById.get({ plain: true });
+        const post = postById.get({ plain: true });
         // res.render('/dashboard');
-        console.log(postID);
+        // console.log(postID);
+        res.render('viewpost', {
+            post,
+            logged_in: req.session.logged_in
+        });
         // res.status(200).json(postById);
     }catch(err) {
         res.status(400).json(err);

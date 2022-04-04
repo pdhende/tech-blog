@@ -1,0 +1,28 @@
+
+{{!-- Handlebar to view selected post and allow user to add a comment --}}
+<div class="row mb-4 custom-post">
+  <div class="col-md-5">
+    <h2>
+      {{post.title}}
+    </h2>
+    <p>Created by {{post.user.name}} on {{format_date post.created_on}}</p>
+  </div>
+  <div class="col-md-7">
+    <p>
+      {{post.description}}
+    </p>
+  </div>
+</div>
+
+<div>
+    <h4>Leave a comment</h4>
+    <form>
+
+    <div class="form-group">
+        {{!-- <label for="exampleFormControlTextarea1">Comment</label> --}}
+        <textarea class="form-control" id="content" rows="3" placeholder="Comment"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary" id="commentSbmt">Add Comment</button>
+</form>
+</div>
