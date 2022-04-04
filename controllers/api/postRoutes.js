@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Post, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // GET route to render form to create new post
@@ -9,6 +9,26 @@ router.get('/newpost', withAuth, (req, res) => {
         res.render('newpost', {
             logged_in: req.session.logged_in
         });
+    }catch(err) {
+        res.status(400).json(err);
+    }
+});
+
+// GET route to get one post by the id
+router.get('/:id', withAuth, async (req, res) => {
+    try {
+        console.log('in get route');
+        const postById = await Post.findByPk(req.params.id, {
+            include: [
+              {
+                model: User,
+                attributes: ['name'],
+              },
+            ],
+          });
+        console.log(postById);
+
+        res.status(200).json(postById);
     }catch(err) {
         res.status(400).json(err);
     }
