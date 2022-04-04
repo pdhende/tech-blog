@@ -17,7 +17,7 @@ router.get('/newpost', withAuth, (req, res) => {
 // GET route to get one post by the id
 router.get('/:id', withAuth, async (req, res) => {
     try {
-        console.log('in get route');
+        // console.log('in get route');
         const postById = await Post.findByPk(req.params.id, {
             include: [
               {
@@ -25,10 +25,13 @@ router.get('/:id', withAuth, async (req, res) => {
                 attributes: ['name'],
               },
             ],
+                // raw: true,
           });
-        console.log(postById);
-
-        res.status(200).json(postById);
+        // console.log(postById);
+        const postID = postById.get({ plain: true });
+        // res.render('/dashboard');
+        console.log(postID);
+        // res.status(200).json(postById);
     }catch(err) {
         res.status(400).json(err);
     }
