@@ -1,24 +1,4 @@
 const createBttn = document.querySelector('#postSubmit');
-const createNPBttn = document.querySelector('#createNewPost');
-
-// Function to render the create new post form
-// const displayForm = async (event) => {
-//     event.preventDefault();
-
-//     const res = await fetch('/api/posts/newpost', {
-//         method: 'GET',
-//         headers: { 'Content-Type': 'application/json' }
-//     });
-//     if (res.ok) {
-//         // If successful, redirect the browser to the dashboard page
-//         console.log(res);
-//         document.location.replace('/api/posts/newpost');
-//     } else {
-//         console.log(res.statusText);
-//         alert(res.statusText);
-
-//     }
-// };
 
 // Function to obtain details regarding new post and send it to the server
 const newPost = async (event) => {
@@ -35,7 +15,6 @@ const newPost = async (event) => {
     });
     if (res.ok) {
         // If successful, redirect the browser to the dashboard page
-        // console.log(response);
         document.location.replace('/dashboard');
     } else {
         console.log(response.statusText);
@@ -46,10 +25,4 @@ const newPost = async (event) => {
 
 
 //Set the EventListeners
-console.log(createBttn);
-console.log(createNPBttn);
-if(createBttn !== null) {
-    createBttn.addEventListener('click', newPost);
-}else {
-    // createNPBttn.addEventListener('click', displayForm);
-}
+createBttn.addEventListener('click', newPost);
