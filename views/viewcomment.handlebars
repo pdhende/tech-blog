@@ -1,0 +1,22 @@
+{{!-- Function to view posta nd all the comments associated to it--}}
+
+<div class="row mb-4 custom-post">
+  <div class="col-md-5">
+    <h2>
+      {{post.title}}
+    </h2>
+    <p>Created by {{post.user.name}} on </p>
+  </div>
+  <div class="col-md-7">
+    <p>
+      {{post.description}}
+    </p>
+  </div>
+</div>
+
+{{!-- {{format_date post.created_on}} --}}
+{{#if commentFlg}}
+  {{#each comments as |comment| }}
+  <div>Comment : {{comment.description}}</div>
+  {{/each}}
+{{/if}}

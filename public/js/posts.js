@@ -17,9 +17,8 @@ const newPost = async (event) => {
         // If successful, redirect the browser to the dashboard page
         document.location.replace('/dashboard');
     } else {
-        console.log(response.statusText);
-        alert(res.statusText);
-
+        console.log(res.statusText);
+        // alert(res.statusText);
     }
 };
 

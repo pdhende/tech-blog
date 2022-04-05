@@ -1,5 +1,6 @@
 
 {{!-- Handlebar to view selected post and allow user to add a comment --}}
+
 <div class="row mb-4 custom-post">
   <div class="col-md-5">
     <h2>
@@ -14,6 +15,12 @@
   </div>
 </div>
 
+{{#if commentFlg}}
+  {{#each comments as |comment| }}
+  <div>Comment: {{comment.description}}</div>
+  {{/each}}
+{{/if}}
+
 <div>
     <h4>Leave a comment</h4>
     <form>
@@ -22,7 +29,7 @@
         {{!-- <label for="exampleFormControlTextarea1">Comment</label> --}}
         <textarea class="form-control" id="comment" rows="3" placeholder="Comment"></textarea>
     </div>
-
+    <input type="hidden" id="postId" name="postId" value={{post.id}}>
     <button type="submit" class="btn btn-primary" id="commentSbmt">Add Comment</button>
 </form>
 </div>
