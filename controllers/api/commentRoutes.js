@@ -3,32 +3,42 @@ const { Comment, User, Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // GET route
-router.get('/viewcomment', withAuth, async (req, res) => {
+router.get('/viewcomment/:postId', withAuth, async (req, res) => {
     try {
         console.log('in get route');
-        console.log();
+        console.log(req.params.postId);
         const allComments = await Comment.findAll({
             include: [{
                 model: User,
                 attributes: ['name']
-            },
-        {
-            model: Post
         }],
             where: {
-                post_id: req.body.post_id
+                post_id: req.params.postId
             }
         });
 
         const comments = allComments.map((comment) => comment.get({ plain: true}));
         console.log(comments);
 
+        const postById = await Post.findByPk(req.params.postId, {
+            include: [
+              {
+                model: User,
+                attributes: ['name'],
+              },
+            ],
+                // raw: true,
+          });
+        // console.log(postById);
+        const post = postById.get({ plain: true });
+          console.log(post);
         res.render('viewcomment', {
+            post,
             comments,
-            commentFlg: true,
+            // commentFlg: true,
             logged_in: req.session.logged_in
         });
-        console.log('in viewpost');
+        // console.log('in viewpost');
         // res.render('viewcomment', {
 
         // });

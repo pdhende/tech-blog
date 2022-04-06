@@ -15,11 +15,11 @@
   </div>
 </div>
 
-{{#if commentFlg}}
+{{!-- {{#if commentFlg}}
   {{#each comments as |comment| }}
   <div>Comment: {{comment.description}}</div>
   {{/each}}
-{{/if}}
+{{/if}} --}}
 
 <div>
     <h4>Leave a comment</h4>
@@ -31,6 +31,7 @@
     </div>
     <input type="hidden" id="postId" name="postId" value={{post.id}}>
     <button type="submit" class="btn btn-primary" id="commentSbmt">Add Comment</button>
+    {{!-- <a href="/api/comments/viewcomment" class="button" id="commentSbmt">Add Comment</a> --}}
 </form>
 </div>
 

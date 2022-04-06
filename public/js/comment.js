@@ -8,18 +8,43 @@ const addComment = async (event) => {
     const description = document.querySelector('#comment').value.trim();
     const post_id = document.querySelector('#postId').value;
     console.log(post_id);
-    const res = await fetch('/api/comments', {
-        method: 'POST',
-        body: JSON.stringify({ description, post_id }),
-        headers: { 'Content-Type': 'application/json' }
-    });
-    if(res.ok){
-        console.log('in res.ok');
-        // const comments = '/api/comments/viewcomment';
-        document.location.replace('/api/comments/viewcomment');
-    } else {
-        console.log(res.statusText);
+    if (post_id){
+        const res = await fetch('/api/comments', {
+            method: 'POST',
+            body: JSON.stringify({ description, post_id }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if(res.ok){
+            console.log('in res.ok');
+            // const response = await fetch(`/api/comments/viewcomment/${post_id}`, {
+            //     method: 'GET',
+            //     headers: { 'Content-Type': 'application/json' }
+            // })
+            // if(response.ok){
+            //     console.log(response.ok);
+            //     document.location.reload();
+                document.location.replace(`/api/comments/viewcomment/${post_id}`);
+            // }else {
+            //     console.log(res.statusText);
+            // }
+            // const comments = '/api/comments/viewcomment';
+            // document.location.reload();
+        } else {
+            console.log(res.statusText);
+        }
     }
+    // const res = await fetch('/api/comments', {
+    //     method: 'POST',
+    //     body: JSON.stringify({ description, post_id }),
+    //     headers: { 'Content-Type': 'application/json' }
+    // });
+    // if(res.ok){
+    //     console.log('in res.ok');
+    //     // const comments = '/api/comments/viewcomment';
+    //     // document.location.replace('/api/comments/viewcomment');
+    // } else {
+    //     console.log(res.statusText);
+    // }
 };
 
 // Set the EventListener
