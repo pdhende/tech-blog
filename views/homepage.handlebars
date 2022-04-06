@@ -1,9 +1,11 @@
 <!-- Loop over each object in the posts array -->
+
+{{#if dashboard}}
 {{#each posts as |post| }}
 <div class="row mb-4 custom-post">
   <div class="col-md-5">
     <h2>
-      <a href="api/posts/{{post.id}}">{{post.title}}</a>
+      <a href="api/posts/ds{{post.id}}">{{post.title}}</a>
     </h2>
     <p>Created by {{post.user.name}} on {{format_date post.created_on}}</p>
   </div>
@@ -14,11 +16,25 @@
   </div>
 </div>
 {{/each}}
-
-{{#if dashboard}}
 <div>
   <a class="btn btn-primary" href="/api/posts/newpost" role="button" id="createNewPost">Create New Post</a>
 </div>
 {{!-- <script src="/js/posts.js"></script> --}}
+{{else}}
+{{#each posts as |post| }}
+<div class="row mb-4 custom-post">
+  <div class="col-md-5">
+    <h2>
+      <a href="api/posts/hp{{post.id}}">{{post.title}}</a>
+    </h2>
+    <p>Created by {{post.user.name}} on {{format_date post.created_on}}</p>
+  </div>
+  <div class="col-md-7">
+    <p>
+      {{post.description}}
+    </p>
+  </div>
+</div>
+{{/each}}
 {{/if}}
 

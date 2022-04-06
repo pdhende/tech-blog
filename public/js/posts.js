@@ -1,4 +1,6 @@
 const createBttn = document.querySelector('#postSubmit');
+const updateBttn = document.querySelector('#postUpdate');
+const deleteBttn = document.querySelector('#postDelete');
 
 // Function to obtain details regarding new post and send it to the server
 const newPost = async (event) => {
@@ -23,5 +25,12 @@ const newPost = async (event) => {
 };
 
 
+
+
 //Set the EventListeners
-createBttn.addEventListener('click', newPost);
+if(createBttn !== null){
+    createBttn.addEventListener('click', newPost);
+}else{
+    updateBttn.addEventListener('click', updatePost);
+    deleteBttn.addEventListener('click', deletePost);
+}

@@ -1,0 +1,21 @@
+<div>
+    <h4>Edit Post</h4>
+</div>
+
+<form>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Title</label>
+        {{!-- <input type="title" class="form-control" id="title"> --}}
+        <input type="title" class="form-control" id="title" value={{post.title}}>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Content</label>
+        <textarea class="form-control" id="content" rows="3">{{post.description}}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary" id="postUpdate">Update</button>
+    <button type="submit" class="btn btn-primary" id="postDelete">Delete</button>
+</form>
+
+{{!-- <script src="/js/posts.js"></script> --}}

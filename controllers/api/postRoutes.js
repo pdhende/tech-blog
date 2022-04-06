@@ -17,8 +17,11 @@ router.get('/newpost', withAuth, (req, res) => {
 // GET route to get one post by the id
 router.get('/:id', withAuth, async (req, res) => {
     try {
-        // console.log('in get route');
-        const postById = await Post.findByPk(req.params.id, {
+        console.log('in get route');
+        const pid = req.params.id.slice(-1);
+        const isPath = req.params.id.slice(0,2);
+        console.log(pid);
+        const postById = await Post.findByPk(pid, {
             include: [
               {
                 model: User,
@@ -31,10 +34,19 @@ router.get('/:id', withAuth, async (req, res) => {
         const post = postById.get({ plain: true });
         // res.render('/dashboard');
         // console.log(postID);
-        res.render('viewpost', {
-            post,
-            logged_in: req.session.logged_in
-        });
+        if(isPath === 'hp') //if this GET request is from the Dashboard page
+           {
+                res.render('viewpost', {
+                post,
+                logged_in: req.session.logged_in
+            });
+           } else {
+                res.render('updatepost', {
+                post,
+                logged_in: req.session.logged_in
+            });
+            // console.log('Make that new view!');
+           }
         // res.status(200).json(postById);
     }catch(err) {
         res.status(400).json(err);
