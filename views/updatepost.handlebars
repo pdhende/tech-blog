@@ -13,9 +13,9 @@
         <label for="exampleFormControlTextarea1">Content</label>
         <textarea class="form-control" id="content" rows="3">{{post.description}}</textarea>
     </div>
-
+    <input type="hidden" id="postId" name="postId" value={{post.id}}>
     <button type="submit" class="btn btn-primary" id="postUpdate">Update</button>
     <button type="submit" class="btn btn-primary" id="postDelete">Delete</button>
 </form>
 
-{{!-- <script src="/js/posts.js"></script> --}}
+<script src="/js/posts.js"></script>

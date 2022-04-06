@@ -9,7 +9,7 @@ router.get('/newpost', withAuth, (req, res) => {
         res.render('newpost', {
             logged_in: req.session.logged_in
         });
-    }catch(err) {
+    } catch (err) {
         res.status(400).json(err);
     }
 });
@@ -19,36 +19,36 @@ router.get('/:id', withAuth, async (req, res) => {
     try {
         console.log('in get route');
         const pid = req.params.id.slice(-1);
-        const isPath = req.params.id.slice(0,2);
+        const isPath = req.params.id.slice(0, 2);
         console.log(pid);
         const postById = await Post.findByPk(pid, {
             include: [
-              {
-                model: User,
-                attributes: ['name'],
-              },
+                {
+                    model: User,
+                    attributes: ['name'],
+                },
             ],
-                // raw: true,
-          });
+            // raw: true,
+        });
         // console.log(postById);
         const post = postById.get({ plain: true });
         // res.render('/dashboard');
         // console.log(postID);
-        if(isPath === 'hp') //if this GET request is from the Dashboard page
-           {
-                res.render('viewpost', {
+        if (isPath === 'hp') //if this GET request is from the Dashboard page
+        {
+            res.render('viewpost', {
                 post,
                 logged_in: req.session.logged_in
             });
-           } else {
-                res.render('updatepost', {
+        } else {
+            res.render('updatepost', {
                 post,
                 logged_in: req.session.logged_in
             });
             // console.log('Make that new view!');
-           }
+        }
         // res.status(200).json(postById);
-    }catch(err) {
+    } catch (err) {
         res.status(400).json(err);
     }
 });
@@ -66,6 +66,25 @@ router.post('/', withAuth, async (req, res) => {
         console.log(newPostVal);
 
         res.status(200).json(newPostVal);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
+
+router.put('/', withAuth, async (req, res) => {
+    try {
+        console.log('in put route');
+        const updatdPost = await Post.update({
+            title: req.body.title,
+            description: req.body.content
+            },
+            {
+                where: {
+                    id: req.body.postID
+                }
+            });
+            console.log(updatdPost);
+            res.status(200).json(updatdPost);
     } catch (err) {
         res.status(400).json(err);
     }

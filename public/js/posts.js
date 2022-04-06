@@ -24,8 +24,34 @@ const newPost = async (event) => {
     }
 };
 
+// Function to obtain changes made to an existing post and send PUT request to server
+const updatePost = async (event) => {
+    event.preventDefault();
 
+    const title = document.querySelector('#title').value.trim();
+    const description = document.querySelector('#content').value.trim();
+    // console.log(title);
+    // console.log(content);
+    const postID = document.querySelector('#postId').value;
+    const res = await fetch('/api/posts', {
+        method: 'PUT',
+        body: JSON.stringify({ postID, title, description }),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    if (res.ok) {
+        // If successful, redirect the browser to the dashboard page
+        document.location.replace('/dashboard');
+    } else {
+        console.log(res.statusText);
+        // alert(res.statusText);
+    }
+};
 
+// Function to delete an existing post
+const deletePost = async (event) => {
+    event.preventDefault();
+
+};
 
 //Set the EventListeners
 if(createBttn !== null){
