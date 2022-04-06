@@ -51,13 +51,26 @@ const updatePost = async (event) => {
 const deletePost = async (event) => {
     event.preventDefault();
 
+    const postID = document.querySelector('#postId').value;
+    const res = await fetch('/api/posts', {
+        method: 'DELETE',
+        body: JSON.stringify({ postID }),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    if (res.ok) {
+        // If successful, redirect the browser to the dashboard page
+        document.location.replace('/dashboard');
+    } else {
+        console.log(res.statusText);
+        // alert(res.statusText);
+    }
+
 };
 
 //Set the EventListeners
 if(createBttn !== null){
     createBttn.addEventListener('click', newPost);
 }else{
-    // document.querySelector('#postTitle').addEventListener();
     updateBttn.addEventListener('click', updatePost);
     deleteBttn.addEventListener('click', deletePost);
 }
