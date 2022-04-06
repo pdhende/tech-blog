@@ -52,9 +52,9 @@ const deletePost = async (event) => {
     event.preventDefault();
 
     const postID = document.querySelector('#postId').value;
-    const res = await fetch('/api/posts', {
+    const res = await fetch(`/api/posts/${postID}`, {
         method: 'DELETE',
-        body: JSON.stringify({ postID }),
+        // body: JSON.stringify({ postID }),
         headers: { 'Content-Type': 'application/json' }
     });
     if (res.ok) {
@@ -64,7 +64,6 @@ const deletePost = async (event) => {
         console.log(res.statusText);
         // alert(res.statusText);
     }
-
 };
 
 //Set the EventListeners

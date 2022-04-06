@@ -71,6 +71,7 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
+// PUT route to update a post by ID
 router.put('/', withAuth, async (req, res) => {
     try {
         console.log('in put route');
@@ -86,6 +87,20 @@ router.put('/', withAuth, async (req, res) => {
             console.log(updatdPost);
             res.status(200).json(updatdPost);
     } catch (err) {
+        res.status(400).json(err);
+    }
+});
+
+// DELETE route to delete a post by ID
+router.delete('/:id', withAuth, async (req, res) => {
+    try {
+        const deletdPost = await Post.destroy({
+            where: {
+                id: req.params.id
+            }
+        });
+        res.status(200).json(deletdPost);
+    }catch(err) {
         res.status(400).json(err);
     }
 });
