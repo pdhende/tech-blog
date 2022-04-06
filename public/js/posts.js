@@ -28,7 +28,7 @@ const newPost = async (event) => {
 const updatePost = async (event) => {
     event.preventDefault();
 
-    const title = document.querySelector('#title').value.trim();
+    const title = document.querySelector('#title').textContent.trim();
     const description = document.querySelector('#content').value.trim();
     // console.log(title);
     // console.log(content);
@@ -57,6 +57,7 @@ const deletePost = async (event) => {
 if(createBttn !== null){
     createBttn.addEventListener('click', newPost);
 }else{
+    // document.querySelector('#postTitle').addEventListener();
     updateBttn.addEventListener('click', updatePost);
     deleteBttn.addEventListener('click', deletePost);
 }

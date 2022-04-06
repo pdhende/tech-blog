@@ -1,12 +1,14 @@
+{{!-- View to update or delete a post --}}
 <div>
     <h4>Edit Post</h4>
 </div>
 
 <form>
     <div class="form-group">
+        <input type="hidden" id="postTitle" name="postTitle" value={{post.title}}>
         <label for="exampleFormControlInput1">Title</label>
-        {{!-- <input type="title" class="form-control" id="title"> --}}
-        <input type="title" class="form-control" id="title" value={{post.title}}>
+        {{!-- <input type="title" class="form-control" id="title" value={{post.title}}> --}}
+        <div contenteditable class="form-control" id="title">{{post.title}}</div>
     </div>
 
     <div class="form-group">
