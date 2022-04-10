@@ -31,6 +31,7 @@ This application is built using :
 * HTML, CSS
 * JavaScript
 * Express
+* Handlebars
 * MySQL2 package
 * ORM Sequelize 
 * MVC Architecture
