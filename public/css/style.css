@@ -2,6 +2,9 @@ header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
 }
 
+a {
+  color: white;
+}
 
 h4 {
   color: darkblue;
@@ -28,9 +31,40 @@ form {
   text-decoration: underline;
 }
 
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
+.custom-header {
+  background-color: black;
+  color: white;
 }
 
+.header-img {
+  width: 100%;
+  height: 300px;
+  background: url('/images/tech_blog.jpg');
+  background-size: cover;
+}
+
+.custom-post {
+  border: 2px solid #2C3E50;
+  border-radius: 10px;
+  color: white;
+  background-color: black;
+  height: 10%;
+}
+
+.post-title {
+  color: white;
+}
+
+.post-desc {
+  background-color: white;
+  color: black;
+}
+
+.post-details {
+  align-self: end;
+}
+
+.custom-modal {
+  color : blue;
+  text-decoration: underline;
+}

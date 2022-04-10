@@ -19,17 +19,18 @@
 <div>
   <a class="btn btn-primary" href="/api/posts/newpost" role="button" id="createNewPost">Create New Post</a>
 </div>
-{{!-- <script src="/js/posts.js"></script> --}}
 {{else}}
 {{#each posts as |post| }}
 <div class="row mb-4 custom-post">
   <div class="col-md-5">
     <h2>
-      <a href="api/posts/hp{{post.id}}">{{post.title}}</a>
+      <a href="api/posts/hp{{post.id}}" class="post-title">{{post.title}}</a>
     </h2>
+  </div>
+  <div class="col-md-7 post-details">
     <p>Created by {{post.user.name}} on {{format_date post.created_on}}</p>
   </div>
-  <div class="col-md-7">
+  <div class="post-desc col-md-12">
     <p>
       {{post.description}}
     </p>

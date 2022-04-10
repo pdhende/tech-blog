@@ -12,7 +12,7 @@
 
 <body>
   <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
+    <header class="display-flex justify-space-between align-center p-2 custom-header">
       <h1>
         <a href="/">Tech Blog</a>
       </h1>
@@ -27,6 +27,7 @@
         {{/if}}
       </nav>
     </header>
+    <div class="header-img"></div>
     <main class="container container-fluid mt-5 custom-main">
 
       <!--Modal to prompt user to login or sign up-->
@@ -39,7 +40,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>Please <a href="/login">Login or Sign up</a> to access all content on Tech Blog!</p>
+              <p>Please <a href="/login" class="custom-modal">Login or Sign up</a> to access all content on Tech Blog!</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
